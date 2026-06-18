@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const api = axios.create({
-  baseURL: 'cosmetics-api-production-05ca.up.railway.app/api',
+  baseURL: 'https://cosmetics-api-production-05ca.up.railway.app/api',
   headers: {
     'Content-Type': 'application/json',
   },
