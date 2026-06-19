@@ -45,7 +45,7 @@ export default function Login() {
       <div className="auth-card shadow-sm rounded-4">
         <div className="text-center mb-4">
           <div className="auth-logo mb-4">A</div>
-          <h1 className="auth-heading mb-1">Login</h1>
+          <h1 className="auth-heading mb-1">Hello Word</h1>
           <p className="auth-subtitle">Access your Aurélie account for premium beauty selections.</p>
         </div>
 
