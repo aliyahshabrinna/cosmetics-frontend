@@ -4,6 +4,7 @@ const getBaseURL = () => {
   if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
     return 'http://127.0.0.1:8000/api'
   }
+  // Pastikan diakhiri dengan /api TANPA tanda garis miring lagi di paling belakang
   return 'https://cosmetics-api-production-05ca.up.railway.app/api'
 }
 
@@ -16,6 +17,7 @@ const api = axios.create({
   },
 })
 
+// Interceptor otomatis menyisipkan token jika user sudah login
 api.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem('token')
