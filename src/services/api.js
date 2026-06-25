@@ -4,7 +4,7 @@ const getBaseURL = () => {
   if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
     return 'http://127.0.0.1:8000/api'
   }
-  // Pastikan diakhiri dengan /api TANPA tanda garis miring lagi di paling belakang
+  // WAJIB tambahkan /api di akhir URL Railway agar masuk ke routes/api.php
   return 'https://cosmetics-api-production-05ca.up.railway.app/api'
 }
 
