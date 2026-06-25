@@ -14,7 +14,7 @@ export default function Register() {
     setForm((prev) => ({ ...prev, [name]: value }))
   }
 
-  const handleSubmit = async (event) => {
+ const handleSubmit = async (event) => {
     event.preventDefault()
     setError('')
     setSuccess('')
@@ -35,14 +35,31 @@ export default function Register() {
         hp: form.hp,
         role: 'pelanggan',
       })
-      setSuccess('Pendaftaran berhasil. Silakan masuk.')
-      setTimeout(() => navigate('/login'), 1000)
+      setSuccess('Pendaftaran berhasil! Mengalihkan ke halaman masuk...')
+      setTimeout(() => navigate('/login'), 1500)
     } catch (err) {
-      setError('Pendaftaran gagal. Silakan coba lagi.')
+      // ANTIGRAVITY: Membaca detail pesan error asli dari validasi Laravel (Error 422)
+      if (err.response && err.response.data) {
+        const backendMessage = err.response.data.message || err.response.data.error
+        
+        // Jika Laravel mengirimkan detail array validasi, kita gabungkan teksnya
+        if (err.response.data.errors) {
+          const validationErrors = Object.values(err.response.data.errors).flat().join(' ')
+          setError(validationErrors)
+        } else if (backendMessage) {
+          setError(backendMessage)
+        } else {
+          setError('Pendaftaran ditolak oleh server. Periksa kembali data Anda.')
+        }
+      } else {
+        setError('Tidak dapat terhubung ke server. Pastikan koneksi internet aktif.')
+      }
     } finally {
       setLoading(false)
     }
   }
+    
+  
 
   return (
     <div className="d-flex align-items-center justify-content-center vh-100 bg-soft-pink auth-page">
