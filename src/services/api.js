@@ -4,13 +4,12 @@ const getBaseURL = () => {
   if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
     return 'http://127.0.0.1:8000/api'
   }
-  // PASTIKAN ADA STRUKTUR '/api' DI AKHIR URL RAILWAY KAMU
-  return 'https://cosmetics-api-production-05ca.up.railway.app/api'
+  return 'https://cosmetics-api-production-05ca.up.railway.app/api' // WAJIB ADA /api DI UJUNGNYA
 }
 
 const api = axios.create({
   baseURL: getBaseURL(),
-  withCredentials: false, // Matikan kredensial agar cocok dengan wildcard CORS bintang (*)
+  withCredentials: false, // Samakan dengan config/cors.php backend yang supports_credentials => false
   headers: {
     'Content-Type': 'application/json',
     'Accept': 'application/json',
