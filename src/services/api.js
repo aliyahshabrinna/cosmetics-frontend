@@ -4,12 +4,12 @@ const getBaseURL = () => {
   if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
     return 'http://127.0.0.1:8000/api'
   }
-  return 'https://cosmetics-api-production-05ca.up.railway.app/api' // WAJIB ADA /api DI UJUNGNYA
+  return 'https://cosmetics-api-production-05ca.up.railway.app/api'
 }
 
 const api = axios.create({
   baseURL: getBaseURL(),
-  withCredentials: false, // Samakan dengan config/cors.php backend yang supports_credentials => false
+  withCredentials: false,
   headers: {
     'Content-Type': 'application/json',
     'Accept': 'application/json',
@@ -24,7 +24,9 @@ api.interceptors.request.use(
     }
     return config
   },
-  (error) => Promise.reject(error),
+  (error) => {
+    return Promise.reject(error)
+  }
 )
 
 export default api
